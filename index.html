@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SIMANTO FOOD HOUSE</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+ background:#f8f9fa;
+ color:#333;
+ padding-bottom:85px;
+}
+
+header{
+ background:#ffffff;
+ color:#222;
+ padding:15px;
+ border-bottom:1px solid #eaeaea;
+ position:sticky;
+ top:0;
+ z-index:100;
+ box-shadow:0 2px 10px rgba(0,0,0,0.04);
+}
+
+.brand{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+}
+
+.brand h1{font-size:20px; font-weight:700; color:#10b981;}
+.brand p{font-size:11px; color:#64748b; margin-top:2px;}
+
+.profile{
+ width:38px;
+ height:38px;
+ background:#f1f5f9;
+ color:#334155;
+ border-radius:50%;
+ display:grid;
+ place-items:center;
+ font-size:18px;
+ cursor:pointer;
+}
+
+.location{
+ margin-top:8px;
+ font-size:12px;
+ color:#64748b;
+ display:flex;
+ align-items:center;
+ gap:4px;
+}
+
+.searchbox{
+ display:flex;
+ background:#f1f5f9;
+ padding:10px 14px;
+ border-radius:8px;
+ margin-top:12px;
+ border:1px solid #e2e8f0;
+ align-items:center;
+ gap:8px;
+}
+
+.searchbox input{
+ border:0;
+ outline:0;
+ width:100%;
+ font-size:14px;
+ background:transparent;
+ color:#333;
+}
+
+.container{
+ max-width:1200px;
+ margin:auto;
+ padding:15px;
+}
+
+h2.section{
+ font-size:17px;
+ font-weight:600;
+ margin:18px 0 12px;
+ color:#1e293b;
+}
+
+.categories{
+ display:flex;
+ gap:10px;
+ overflow-x:auto;
+ padding-bottom:5px;
+ scrollbar-width:none;
+}
+.categories::-webkit-scrollbar{display:none;}
+
+.cat{
+ background:white;
+ border-radius:10px;
+ text-align:center;
+ padding:10px 14px;
+ font-size:12px;
+ font-weight:500;
+ white-space:nowrap;
+ box-shadow:0 1px 3px rgba(0,0,0,0.05);
+ border:1px solid #e2e8f0;
+ cursor:pointer;
+ transition:all 0.2s;
+ color:#475569;
+}
+
+.cat span{
+ display:inline-block;
+ margin-right:4px;
+ font-size:14px;
+}
+
+.cat.active{
+ background:#10b981;
+ color:white;
+ border-color:#10b981;
+}
+
+.banner{
+ margin-top:15px;
+ padding:22px;
+ border-radius:12px;
+ background:linear-gradient(135deg,#065f46,#10b981);
+ color:white;
+ box-shadow:0 4px 12px rgba(16,185,129,0.2);
+}
+
+.banner h2{
+ font-size:22px;
+ font-weight:700;
+ margin-bottom:6px;
+}
+
+.banner h3{
+ font-size:14px;
+ font-weight:400;
+ opacity:0.9;
+ margin-bottom:4px;
+}
+
+.banner p{
+ font-size:12px;
+ opacity:0.8;
+}
+
+.banner button{
+ background:#ffffff;
+ color:#065f46;
+ border:0;
+ padding:8px 16px;
+ border-radius:6px;
+ margin-top:12px;
+ font-weight:600;
+ font-size:12px;
+ cursor:pointer;
+}
+
+.toolbar{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin:20px 0 10px;
+}
+
+.toolbar select{
+ padding:6px 10px;
+ border:1px solid #cbd5e1;
+ border-radius:6px;
+ background:white;
+ font-size:13px;
+ color:#334155;
+ outline:none;
+}
+
+.products{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:12px;
+}
+
+.card{
+ background:white;
+ border-radius:10px;
+ overflow:hidden;
+ box-shadow:0 1px 3px rgba(0,0,0,0.06);
+ border:1px solid #e2e8f0;
+ cursor:pointer;
+ transition:transform 0.2s, box-shadow 0.2s;
+ display:flex;
+ flex-direction:column;
+ justify-content:space-between;
+}
+
+.card:hover{
+ transform:translateY(-2px);
+ box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+.card img{
+ width:100%;
+ height:130px;
+ object-fit:cover;
+ background:#f1f5f9;
+}
+
+.info{padding:10px}
+
+.info h3{
+ font-size:13px;
+ font-weight:600;
+ margin-bottom:4px;
+ color:#1e293b;
+ display:-webkit-box;
+ -webkit-line-clamp:1;
+ -webkit-box-orient:vertical;
+ overflow:hidden;
+}
+
+.price-row{
+ display:flex;
+ align-items:baseline;
+ gap:6px;
+ margin-top:4px;
+}
+
+.price{
+ color:#0f172a;
+ font-size:15px;
+ font-weight:700;
+}
+
+.old{
+ color:#94a3b8;
+ font-size:11px;
+ text-decoration:line-through;
+}
+
+.unit{
+ color:#64748b;
+ font-size:11px;
+ margin-top:2px;
+}
+
+.add{
+ width:100%;
+ border:0;
+ background:#f0fdf4;
+ color:#10b981;
+ border:1px solid #bbf7d0;
+ padding:7px;
+ border-radius:6px;
+ margin-top:8px;
+ font-weight:600;
+ font-size:12px;
+ cursor:pointer;
+ transition:background 0.2s;
+}
+
+.add:hover{
+ background:#10b981;
+ color:white;
+}
+
+.discount{
+ background:#fee2e2;
+ color:#dc2626;
+ padding:2px 6px;
+ border-radius:4px;
+ font-size:9px;
+ font-weight:600;
+ display:inline-block;
+ margin-bottom:4px;
+}
+
+.bottomnav{
+ position:fixed;
+ bottom:0;
+ left:0;
+ right:0;
+ height:65px;
+ background:white;
+ box-shadow:0 -2px 10px rgba(0,0,0,0.06);
+ border-top:1px solid #eaeaea;
+ display:flex;
+ justify-content:space-around;
+ align-items:center;
+ z-index:10;
+}
+
+.navitem{
+ text-align:center;
+ font-size:11px;
+ color:#64748b;
+ cursor:pointer;
+ flex:1;
+}
+
+.navitem span{
+ display:block;
+ font-size:20px;
+ margin-bottom:2px;
+}
+
+.navitem.active{
+ color:#10b981;
+ font-weight:600;
+}
+
+.badge{
+ background:#dc2626;
+ color:white;
+ border-radius:50%;
+ padding:1px 5px;
+ font-size:9px;
+ position:absolute;
+ margin-top:-22px;
+ margin-left:4px;
+}
+
+.overlay{
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,0.5);
+ display:none;
+ align-items:center;
+ justify-content:center;
+ z-index:20;
+ padding:15px;
+ backdrop-filter:blur(2px);
+}
+
+.modal{
+ width:100%;
+ max-width:450px;
+ max-height:85vh;
+ overflow:auto;
+ background:white;
+ border-radius:12px;
+ padding:20px;
+ box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+.modal img{
+ width:100%;
+ height:180px;
+ object-fit:cover;
+ border-radius:8px;
+}
+
+.close{
+ float:right;
+ border:0;
+ padding:6px 10px;
+ background:#f1f5f9;
+ color:#334155;
+ border-radius:50%;
+ font-weight:bold;
+ cursor:pointer;
+}
+
+.modal h2{margin:10px 0; font-size:18px; color:#1e293b;}
+
+.modal input,
+.modal textarea,
+.modal select{
+ width:100%;
+ padding:10px 12px;
+ margin:6px 0;
+ border:1px solid #cbd5e1;
+ border-radius:6px;
+ font-size:14px;
+ outline:none;
+}
+
+.primary{
+ width:100%;
+ padding:11px;
+ border:0;
+ border-radius:6px;
+ background:#10b981;
+ color:white;
+ font-weight:600;
+ font-size:14px;
+ margin-top:10px;
+ cursor:pointer;
+}
+
+.secondary{
+ width:100%;
+ padding:10px;
+ border:1px solid #10b981;
+ border-radius:6px;
+ background:white;
+ color:#10b981;
+ font-weight:600;
+ font-size:14px;
+ margin-top:6px;
+ cursor:pointer;
+}
+
+.cartrow{
+ display:flex;
+ align-items:center;
+ gap:10px;
+ padding:10px 0;
+ border-bottom:1px solid #f1f5f9;
+}
+
+.cartrow img{
+ width:55px;
+ height:55px;
+ object-fit:cover;
+ border-radius:6px;
+}
+
+.cartrow div{flex:1}
+
+.qty button{
+ padding:2px 8px;
+ border:1px solid #cbd5e1;
+ border-radius:4px;
+ background:#f8f9fa;
+ cursor:pointer;
+ font-weight:bold;
+}
+
+footer{
+ background:#1e293b;
+ color:#94a3b8;
+ text-align:center;
+ padding:25px;
+ margin-top:30px;
+ font-size:12px;
+}
+footer h2{color:white; font-size:16px; margin-bottom:5px;}
+
+@media(max-width:750px){
+ .products{grid-template-columns:repeat(3,1fr)}
+}
+
+@media(max-width:500px){
+ .products{grid-template-columns:repeat(2,1fr); gap:10px;}
+ .card img{height:120px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="brand">
+  <div>
+   <h1>SIMANTO FOOD HOUSE</h1>
+   <p>সীমান্ত ফুড হাউস • গ্রোসারি ও ফুড ডেলিভারি</p>
+  </div>
+  <div class="profile" onclick="showProfile()">👤</div>
+ </div>
+
+ <div class="location">
+  📍 ডেলিভারি লোকেশন: সাতক্ষীরা, বাংলাদেশ
+ </div>
+
+ <div class="searchbox">
+  🔍
+  <input id="search" placeholder="খাবার, ফলমূল, শাকসবজি বা পণ্য সার্চ করুন...">
+ </div>
+</header>
+
+<main class="container">
+
+<h2 class="section">ক্যাটাগরি সমূহ</h2>
+<div class="categories" id="categories"></div>
+
+<div class="banner">
+ <h2>SIMANTO FOOD HOUSE</h2>
+ <h3>আপনার প্রয়োজনীয় সব কিছু এক ঠিকানায়!</h3>
+ <p>তাজা ফলমূল • শাকসবজি • সুস্বাদু খাবার ও গ্রোসারি</p>
+ <button onclick="showCategory('সব পণ্য')">শপিং করুন →</button>
+</div>
+
+<div class="toolbar">
+ <h2 class="section" style="margin:0">সব পণ্য</h2>
+ <select id="sort">
+  <option value="popular">জনপ্রিয়</option>
+  <option value="low">কম দাম</option>
+  <option value="high">বেশি দাম</option>
+ </select>
+</div>
+
+<p id="count" style="margin-bottom:12px;color:#64748b;font-size:12px;"></p>
+
+<div class="products" id="products"></div>
+
+</main>
+
+<footer>
+ <h2>SIMANTO FOOD HOUSE</h2>
+ <p>সীমান্ত ফুড হাউস</p>
+ <p style="margin:5px 0">Food | Grocery | Fruits | Kitchen Appliances</p>
+ <p>All Rights Reserved © 2026</p>
+</footer>
+
+<!-- BOTTOM NAVIGATION -->
+<div class="bottomnav">
+ <div class="navitem active" onclick="goHome(this)">
+  <span>🏠</span>হোম
+ </div>
+ <div class="navitem" onclick="showDelivery(this)">
+  <span>🚚</span>ডেলিভারি
+ </div>
+ <div class="navitem" onclick="showTracking(this)">
+  <span>🔎</span>ট্র্যাকিং
+ </div>
+ <div class="navitem" onclick="openCart(this)" style="position:relative;">
+  <span>🛒</span>কার্ট
+  <b class="badge" id="cartCount">0</b>
+ </div>
+ <div class="navitem" onclick="showProfile(this)">
+  <span>👤</span>প্রোফাইল
+ </div>
+</div>
+
+<div class="overlay" id="overlay">
+ <div class="modal" id="modal"></div>
+</div>
+
+<script>
+const categories=[
+["সব পণ্য","🏠"],
+["বাংলাদেশি খাবার","🍛"],
+["বিরিয়ানি","🍚"],
+["পিজ্জা","🍕"],
+["বার্গার","🍔"],
+["চিকেন","🍗"],
+["নুডুলস","🍜"],
+["কেক ও পেস্ট্রি","🎂"],
+["মিষ্টি","🍮"],
+["মাছ ও মাংস","🐟"],
+["ফলমূল","🍎"],
+["শাকসবজি","🥦"],
+["চাল ও ডাল","🌾"],
+["মুদিখানা","🛒"],
+["মসলা","🌶️"],
+["রান্নার সরঞ্জাম","🍳"],
+["ইলেকট্রনিক","⚡"]
+];
+
+const rawData={
+"বাংলাদেশি খাবার":[
+["সাদা ভাত",30,"প্লেট","https://images.unsplash.com/photo-1516714435131-44d6b64dc6a2?w=400"],
+["মসুর ডাল",40,"বাটি","https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400"],
+["মুগ ডাল",50,"বাটি","https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400"],
+["ভুনা খিচুড়ি",120,"প্লেট","https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?w=400"],
+["গরুর ভুনা",180,"প্লেট","https://images.unsplash.com/photo-1544025162-d76694265947?w=400"],
+["মুরগির ঝোল",130,"প্লেট","https://images.unsplash.com/photo-1604908176997-125f2596f37c?w=400"],
+["ইলিশ ভাজা",220,"পিস","https://images.unsplash.com/photo-1534422298391-e4f8સી1c2d3e?w=400"],
+["রুই মাছের ঝোল",150,"প্লেট","https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400"],
+["আলু ভর্তা",30,"বাটি","https://images.unsplash.com/photo-1518492104633-130d0cc84637?w=400"],
+["বেগুন ভর্তা",35,"বাটি","https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400"],
+["শাক ভাজি",40,"প্লেট","https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400"],
+["পান্তা ভাত",80,"প্লেট","https://images.unsplash.com/photo-1543339308-43e59d6b73a6?w=400"],
+["ফুচকা",80,"প্লেট","https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400"],
+["চটপটি",70,"প্লেট","https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=400"],
+["হালিম",100,"বাটি","https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=400"],
+["নেহারি",180,"বাটি","https://images.unsplash.com/photo-1544025162-d76694265947?w=400"],
+["তেহারি",160,"প্লেট","https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?w=400"],
+["মোরগ পোলাও",190,"প্লেট","https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400"],
+["পরোটা",20,"পিস","https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400"],
+["সিঙ্গারা",15,"পিস","https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400"],
+["সমুচা",20,"পিস","https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400"]
+],
+"বিরিয়ানি":[
+["ঢাকাই কাচ্চি বিরিয়ানি",280,"প্লেট","https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?w=400"],
+["হায়দরাবাদি বিরিয়ানি",320,"প্লেট","https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400"],
+["কলকাতা বিরিয়ানি",280,"প্লেট","https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?w=400"],
+["লখনউ বিরিয়ানি",350,"প্লেট","https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400"],
+["সিন্ধি বিরিয়ানি",330,"প্লেট","https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?w=400"],
+["বোম্বে বিরিয়ানি",300,"প্লেট","https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400"],
+["মালাবার বিরিয়ানি",320,"প্লেট","https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?w=400"],
+["থালাসেরি বিরিয়ানি",340,"প্লেট","https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400"],
+["চিকেন বিরিয়ানি",220,"প্লেট","https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400"],
+["বিফ বিরিয়ানি",260,"প্লেট","https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?w=400"],
+["মাটন বিরিয়ানি",350,"প্লেট","https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?w=400"],
+["ডিম বিরিয়ানি",150,"প্লেট","https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400"],
+["ফিশ বিরিয়ানি",250,"প্লেট","https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400"],
+["চিংড়ি বিরিয়ানি",300,"প্লেট","https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400"],
+["ভেজিটেবল বিরিয়ানি",180,"প্লেট","https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400"]
+],
+"পিজ্জা":[
+["মার্গারিটা পিজ্জা",350,"পিস","https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=400"],
+["পেপারনি পিজ্জা",550,"পিস","https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400"],
+["চিকেন পিজ্জা",450,"পিস","https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400"],
+["BBQ চিকেন পিজ্জা",520,"পিস","https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400"],
+["বিফ পিজ্জা",550,"পিস","https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=400"],
+["ফোর চিজ পিজ্জা",600,"পিস","https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400"],
+["হাওয়াইয়ান পিজ্জা",480,"পিস","https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400"],
+["মেক্সিকান পিজ্জা",500,"পিস","https://images.unsplash.com/photo-1594007654729-407eedc4be65?w=400"],
+["মাশরুম পিজ্জা",420,"পিস","https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400"]
+],
+"বার্গার":[
+["ক্লাসিক বিফ বার্গার",250,"পিস","https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400"],
+["চিকেন বার্গার",180,"পিস","https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?w=400"],
+["ক্রিসপি চিকেন বার্গার",220,"পিস","https://images.unsplash.com/photo-1610440042657-612c34d95e4f?w=400"],
+["চিজ বার্গার",280,"পিস","https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400"],
+["ডাবল চিজ বার্গার",350,"পিস","https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400"],
+["BBQ বার্গার",300,"পিস","https://images.unsplash.com/photo-1550547660-d9450f859349?w=400"],
+["জিঙ্গার বার্গার",240,"পিস","https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?w=400"]
+],
+"চিকেন":[
+["ফ্রাইড চিকেন",120,"পিস","https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=400"],
+["গ্রিলড চিকেন",350,"প্লেট","https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=400"],
+["BBQ চিকেন",380,"প্লেট","https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400"],
+["চিকেন উইংস",180,"প্লেট","https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=400"],
+["চিকেন নাগেটস",150,"প্লেট","https://images.unsplash.com/photo-1562967914-608f82629710?w=400"],
+["চিকেন টিক্কা",220,"প্লেট","https://images.unsplash.com/photo-1599487484170-7c1e6c5fa81d?w=400"],
+["তন্দুরি চিকেন",300,"প্লেট","https://images.unsplash.com/photo-1610057099431-d7a8e9d3ab4f?w=400"]
+],
+"নুডুলস":[
+["চিকেন চাউমিন",180,"প্লেট","https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400"],
+["বিফ চাউমিন",220,"প্লেট","https://images.unsplash.com/photo-1612927601601-6638404737ce?w=400"],
+["ভেজিটেবল নুডুলস",130,"প্লেট","https://images.unsplash.com/photo-1552611052-33e04de081de?w=400"],
+["জাপানিজ রামেন",350,"বাটি","https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400"],
+["কোরিয়ান নুডুলস",280,"বাটি","https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400"],
+["স্প্যাগেটি",250,"প্লেট","https://images.unsplash.com/photo-1621996346565-e3d5d6281231?w=400"],
+["আলফ্রেডো পাস্তা",320,"প্লেট","https://images.unsplash.com/photo-1645112411341-6c4fd0237148?w=400"]
+],
+"কেক ও পেস্ট্রি":[
+["চকলেট কেক",650,"পাউন্ড","https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400"],
+["ব্ল্যাক ফরেস্ট কেক",750,"পাউন্ড","https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400"],
+["রেড ভেলভেট কেক",850,"পাউন্ড","https://images.unsplash.com/photo-1586788224321-547e45773145?w=400"],
+["ভ্যানিলা কেক",550,"পাউন্ড","https://images.unsplash.com/photo-1535141192574-5d4897c13136?w=400"],
+["চিজকেক",900,"পাউন্ড","https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=400"],
+["চকলেট পেস্ট্রি",100,"পিস","https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400"],
+["পাইনঅ্যাপল পেস্ট্রি",90,"পিস","https://images.unsplash.com/photo-1535141192574-5d4897c13136?w=400"],
+["কাপকেক",80,"পিস","https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?w=400"],
+["ব্রাউনি",100,"পিস","https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=400"],
+["ডোনাট",70,"পিস","https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=400"]
+],
+"মিষ্টি":[
+["রসগোল্লা",25,"পিস","https://images.unsplash.com/photo-1599785209707-a456fc1337bb?w=400"],
+["রসমালাই",45,"পিস","https://images.unsplash.com/photo-1599785209707-a456fc1337bb?w=400"],
+["গুলাব জামুন",30,"পিস","https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400"],
+["জিলাপি",160,"কেজি","https://images.unsplash.com/photo-1599785209707-a456fc1337bb?w=400"],
+["কালোজাম",25,"পিস","https://images.unsplash.com/photo-1599785209707-a456fc1337bb?w=400"],
+["সন্দেশ",35,"পিস","https://images.unsplash.com/photo-1599785209707-a456fc1337bb?w=400"],
+["মিষ্টি দই",100,"কেজি","https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400"],
+["ফালুদা",120,"গ্লাস","https://images.unsplash.com/photo-1541658016709-82535e94bc69?w=400"],
+["কুলফি",80,"পিস","https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=400"]
+],
+"মাছ ও মাংস":[
+["ইলিশ মাছ",1400,"কেজি","https://images.unsplash.com/photo-1534422298391-e4f8c1c2d3e?w=400"],
+["রুই মাছ",350,"কেজি","https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400"],
+["কাতলা মাছ",380,"কেজি","https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400"],
+["তেলাপিয়া মাছ",220,"কেজি","https://images.unsplash.com/photo-1534422298391-e4f8c1c2d3e?w=400"],
+["চিংড়ি",800,"কেজি","https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=400"],
+["গরুর মাংস",850,"কেজি","https://images.unsplash.com/photo-1603048588665-791ca8aea617?w=400"],
+["খাসির মাংস",1100,"কেজি","https://images.unsplash.com/photo-1544025162-d76694265947?w=400"],
+["মুরগি",260,"কেজি","https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400"]
+],
+"ফলমূল":[
+["লাল আপেল",280,"কেজি","https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400"],
+["সবুজ আপেল",350,"কেজি","https://images.unsplash.com/photo-1619546813926-a78fa6372cd2?w=400"],
+["পেয়ারা",80,"কেজি","https://images.unsplash.com/photo-1536483723315-f56e54f19818?w=400"],
+["থাই পেয়ারা",120,"কেজি","https://images.unsplash.com/photo-1536483723315-f56e54f19818?w=400"],
+["লেবু",100,"ডজন","https://images.unsplash.com/photo-1563178406-4cdc2923acbc?w=400"],
+["কমলা",250,"কেজি","https://images.unsplash.com/photo-1547514701-42782101795e?w=400"],
+["মাল্টা",280,"কেজি","https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=400"],
+["কলা",80,"ডজন","https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400"],
+["আম",150,"কেজি","https://images.unsplash.com/photo-1553279768-865429fa0078?w=400"],
+["লিচু",180,"কেজি","https://images.unsplash.com/photo-1530554764233-e79e16c91d08?w=400"],
+["কাঁঠাল",100,"পিস","https://images.unsplash.com/photo-1587393855524-087f83d95bc9?w=400"],
+["পেঁপে",60,"কেজি","https://images.unsplash.com/photo-1617937392497-6a3f9fb5c72d?w=400"],
+["আনারস",50,"পিস","https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=400"],
+["তরমুজ",45,"কেজি","https://images.unsplash.com/photo-1587049352847-4a222e784d38?w=400"],
+["ডালিম",350,"কেজি","https://images.unsplash.com/photo-1541345037836-39e1501d6f1c?w=400"],
+["আঙুর",400,"কেজি","https://images.unsplash.com/photo-1537640538966-79f369143f8f?w=400"],
+["স্ট্রবেরি",600,"কেজি","https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=400"],
+["ড্রাগন ফল",350,"কেজি","https://images.unsplash.com/photo-1527324794147-8b625877f40c?w=400"],
+["নারকেল",80,"পিস","https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=400"],
+["নাশপাতি",300,"কেজি","https://images.unsplash.com/photo-1514733670129-26eed4534f19?w=400"],
+["কামরাঙা",100,"কেজি","https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=400"],
+["জাম",180,"কেজি","https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=400"],
+["বাতাবি লেবু",80,"পিস","https://images.unsplash.com/photo-1547514701-42782101795e?w=400"]
+],
+"শাকসবজি":[
+["আলু",35,"কেজি","https://images.unsplash.com/photo-1518977676601-b5ff321036b9?w=400"],
+["পেঁয়াজ",65,"কেজি","https://images.unsplash.com/photo-1508747703725-71c7776d5acb?w=400"],
+["রসুন",180,"কেজি","https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400"],
+["আদা",220,"কেজি","https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=400"],
+["টমেটো",70,"কেজি","https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400"],
+["বেগুন",60,"কেজি","https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400"],
+["ফুলকপি",45,"পিস","https://images.unsplash.com/photo-1568584712272-823a5cf6e1f4?w=400"],
+["বাঁধাকপি",40,"পিস","https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=400"],
+["ব্রকলি",180,"কেজি","https://images.unsplash.com/photo-1459411621453-7b0397ce92f4?w=400"],
+["গাজর",80,"কেজি","https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=400"],
+["শসা",50,"কেজি","https://images.unsplash.com/photo-1449300079323-02e20989d8a2?w=400"],
+["লাউ",60,"পিস","https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400"],
+["মিষ্টি কুমড়া",50,"কেজি","https://images.unsplash.com/photo-1570586437567-c08d132ee9e0?w=400"],
+["করলা",80,"কেজি","https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400"],
+["ঢেঁড়স",70,"কেজি","https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400"],
+["কাঁচা মরিচ",100,"কেজি","https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=400"],
+["ক্যাপসিকাম",180,"কেজি","https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?w=400"],
+["পালং শাক",40,"আঁটি","https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400"],
+["লাল শাক",30,"আঁটি","https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400"],
+["ধনেপাতা",25,"আঁটি","https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400"],
+["শিম",70,"কেজি","https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400"],
+["বরবটি",65,"কেজি","https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400"],
+["মুলা",45,"কেজি","https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400"],
+["পটল",65,"কেজি","https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400"]
+],
+"চাল ও ডাল":[
+["মিনিকেট চাল",75,"কেজি","https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400"],
+["নাজিরশাইল চাল",90,"কেজি","https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400"],
+["কালিজিরা চাল",120,"কেজি","https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400"],
+["চিনিগুঁড়া চাল",110,"কেজি","https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400"],
+["বাসমতি চাল",220,"কেজি","https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400"],
+["মসুর ডাল",120,"কেজি","https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400"],
+["মুগ ডাল",150,"কেজি","https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400"],
+["ছোলার ডাল",100,"কেজি","https://images.unsplash.com/photo-1515543237350-b3eea1ec8082?w=400"],
+["মাসকলাই ডাল",140,"কেজি","https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400"],
+["খেসারি ডাল",90,"কেজি","https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400"]
+],
+"মুদিখানা":[
+["ডিম",150,"ডজন","https://images.unsplash.com/photo-1516448702986-73d08436f56e?w=400"],
+["দুধ",90,"লিটার","https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400"],
+["মাখন",180,"প্যাকেট","https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=400"],
+["চিজ",250,"প্যাকেট","https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=400"],
+["দই",120,"কেজি","https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400"],
+["পাউরুটি",60,"পিস","https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400"],
+["আটা",65,"কেজি","https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400"],
+["ময়দা",70,"কেজি","https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400"],
+["চিনি",140,"কেজি","https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400"],
+["লবণ",40,"কেজি","https://images.unsplash.com/photo-1518112166656-7848c3b4d1b7?w=400"],
+["মধু",250,"বোতল","https://images.unsplash.com/photo-1587049352847-4a222e784d38?w=400"]
+],
+"মসলা":[
+["সয়াবিন তেল",175,"লিটার","https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400"],
+["সরিষার তেল",220,"লিটার","https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400"],
+["অলিভ অয়েল",750,"লিটার","https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400"],
+["হলুদ গুঁড়া",300,"কেজি","https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400"],
+["মরিচ গুঁড়া",380,"কেজি","https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400"],
+["ধনিয়া গুঁড়া",280,"কেজি","https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400"],
+["জিরা",650,"কেজি","https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400"],
+["দারুচিনি",700,"কেজি","https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400"],
+["এলাচ",2200,"কেজি","https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400"]
+],
+"রান্নার সরঞ্জাম":[
+["স্টিলের হাতা",120,"পিস","https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=400"],
+["খুন্তি",100,"পিস","https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=400"],
+["ঝাঁঝরি",150,"পিস","https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=400"],
+["ছুরি সেট",450,"সেট","https://images.unsplash.com/photo-1593618998160-e34014e67546?w=400"],
+["সবজি কাটার",180,"পিস","https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=400"],
+["পিলার",80,"পিস","https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=400"],
+["চপিং বোর্ড",250,"পিস","https://images.unsplash.com/photo-1590794056226-79ef3a81372e?w=400"],
+["বেলন",120,"পিস","https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=400"],
+["ননস্টিক ফ্রাইপ্যান",950,"পিস","https://images.unsplash.com/photo-1584990347426-c7853cd7e61a?w=400"],
+["স্টিলের কড়াই",850,"পিস","https://images.unsplash.com/photo-1584990347426-c7853cd7e61a?w=400"],
+["প্রেশার কুকার",2200,"পিস","https://images.unsplash.com/photo-1584990347426-c7853cd7e61a?w=400"],
+["থালা সেট",1200,"সেট","https://images.unsplash.com/photo-1615870216519-2f9fa575fa5c?w=400"]
+],
+"ইলেকট্রনিক":[
+["মাইক্রোওভেন",9500,"পিস","https://images.unsplash.com/photo-1585659722983-380ff0777705?w=400"],
+["ইলেকট্রিক ওভেন",6500,"পিস","https://images.unsplash.com/photo-1585659722983-380ff0777705?w=400"],
+["রাইস কুকার",2200,"পিস","https://images.unsplash.com/photo-1585659722983-380ff0777705?w=400"],
+["ইন্ডাকশন কুকার",3500,"পিস","https://images.unsplash.com/photo-1585659722983-380ff0777705?w=400"],
+["ইলেকট্রিক কেটলি",1200,"পিস","https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400"],
+["ব্লেন্ডার",2500,"পিস","https://images.unsplash.com/photo-1570222094114-d074f7e1e6e6?w=400"],
+["জুসার মেশিন",3200,"পিস","https://images.unsplash.com/photo-1570222094114-d074f7e1e6e6?w=400"],
+["মিক্সার গ্রাইন্ডার",4500,"পিস","https://images.unsplash.com/photo-1570222094114-d074f7e1e6e6?w=400"],
+["এয়ার ফ্রায়ার",8500,"পিস","https://images.unsplash.com/photo-1585659722983-380ff0777705?w=400"],
+["টোস্টার",1800,"পিস","https://images.unsplash.com/photo-1585659722983-380ff0777705?w=400"],
+["কফি মেকার",5500,"পিস","https://images.unsplash.com/photo-1517668808822-9402f2db04b3?w=400"]
+]
+};
+
+let products=[];
+let nextId=1;
+Object.entries(rawData).forEach(([cat,items])=>{
+ items.forEach(x=>{
+  products.push({
+   id:nextId++,
+   name:x[0],
+   price:x[1],
+   unit:x[2],
+   photo:x[3],
+   category:cat
+  });
+ });
+});
+
+let selected="সব পণ্য";
+let cart=JSON.parse(localStorage.getItem("simanto_cart")||"{}");
+let orders=JSON.parse(localStorage.getItem("simanto_orders")||"[]");
+
+function money(n){ return "৳"+Number(n).toFixed(2); }
+
+function renderCategories(){
+ document.getElementById("categories").innerHTML=categories.map(c=>`
+ <div class="cat ${selected===c[0]?'active':''}" onclick="showCategory('${c[0]}')">
+ <span>${c[1]}</span>${c[0]}
+ </div>
+ `).join("");
+}
+
+function showCategory(c){
+ selected=c;
+ renderCategories();
+ renderProducts();
+ window.scrollTo({top:280,behavior:"smooth"});
+}
+
+function renderProducts(){
+ let q=document.getElementById("search").value.toLowerCase();
+ let list=products.filter(p=>
+  (selected==="সব পণ্য"||p.category===selected)&&
+  (p.name.toLowerCase().includes(q)||p.category.toLowerCase().includes(q))
+ );
+ let sort=document.getElementById("sort").value;
+ if(sort==="low")list.sort((a,b)=>a.price-b.price);
+ if(sort==="high")list.sort((a,b)=>b.price-a.price);
+
+ document.getElementById("count").innerText="মোট "+list.length+" টি পণ্য পাওয়া গেছে";
+ document.getElementById("products").innerHTML=list.map(p=>`
+ <div class="card" onclick="productDetails(${p.id})">
+  <img loading="lazy" src="${p.photo}" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400'">
+  <div class="info">
+   <span class="discount">১০% ছাড়</span>
+   <h3>${p.name}</h3>
+   <div class="price-row">
+    <div class="price">${money(p.price*0.90)}</div>
+    <div class="old">${money(p.price)}</div>
+   </div>
+   <div class="unit">প্রতি ${p.unit}</div>
+   <button class="add" onclick="event.stopPropagation();productDetails(${p.id})">অর্ডার করুন</button>
+  </div>
+ </div>
+ `).join("")||"<p style='grid-column:1/-1;text-align:center;padding:30px;color:#64748b;'>কোনো পণ্য পাওয়া যায়নি।</p>";
+}
+
+function productDetails(id){
+ let p=products.find(x=>x.id===id);
+ document.getElementById("modal").innerHTML=`
+ <button class="close" onclick="closeModal()">✕</button>
+ <img src="${p.photo}">
+ <h2>${p.name}</h2>
+ <p style="color:#64748b;font-size:13px;margin-bottom:8px;">ক্যাটাগরি: ${p.category}</p>
+ <h2 style="color:#10b981">${money(p.price*0.90)} <del style="color:#94a3b8;font-size:14px;font-weight:normal">${money(p.price)}</del></h2>
+ <p style="font-size:13px;color:#475569;margin-bottom:12px;">প্রতি এককের দাম (${p.unit})</p>
+ <label style="font-size:13px;font-weight:600">পরিমাণ (${p.unit}):</label>
+ <input id="quantity" type="number" min="1" step="1" value="1">
+ <p id="liveTotal" style="font-weight:600;margin:10px 0;color:#1e293b;">মোট: ${money(p.price*0.90)}</p>
+ <button class="primary" onclick="addToCart(${p.id})">🛒 কার্টে যোগ করুন</button>
+ <button class="secondary" onclick="buyNow(${p.id})">⚡ সরাসরি অর্ডার করুন</button>
+ `;
+ document.getElementById("overlay").style.display="flex";
+ document.getElementById("quantity").addEventListener("input",e=>{
+  let qty=Math.max(1,Number(e.target.value)||1);
+  document.getElementById("liveTotal").innerText="মোট: "+money(p.price*0.90*qty);
+ });
+}
+
+function saveCart(){
+ localStorage.setItem("simanto_cart",JSON.stringify(cart));
+ updateCartCount();
+}
+
+function updateCartCount(){
+ document.getElementById("cartCount").innerText=Object.values(cart).reduce((a,b)=>a+b,0);
+}
+
+function addToCart(id){
+ let qty=Number(document.getElementById("quantity").value);
+ if(qty<=0||!Number.isFinite(qty)){alert("সঠিক পরিমাণ লিখুন");return;}
+ cart[id]=(cart[id]||0)+qty;
+ saveCart();
+ closeModal();
+ openCart();
+}
+
+function buyNow(id){
+ addToCart(id);
+}
+
+function changeQty(id,amount){
+ cart[id]=(cart[id]||0)+amount;
+ if(cart[id]<=0)delete cart[id];
+ saveCart();
+ openCart();
+}
+
+function openCart(nav){
+ if(nav)activateNav(nav);
+ let entries=Object.entries(cart);
+ let subtotal=0;
+ let html=`<button class="close" onclick="closeModal()">✕</button><h2>🛒 আপনার কার্ট ও অর্ডার</h2>`;
+ if(entries.length===0){
+  html+="<p style='color:#64748b;padding:20px 0;text-align:center;'>আপনার কার্ট খালি। যেকোনো পণ্য থেকে অর্ডার করুন।</p>";
+ }else{
+  entries.forEach(([id,qty])=>{
+   let p=products.find(x=>x.id==id);
+   if(!p)return;
+   let price=p.price*0.90;
+   subtotal+=price*qty;
+   html+=`
+   <div class="cartrow">
+    <img src="${p.photo}">
+    <div>
+     <b style="font-size:13px;color:#1e293b">${p.name}</b>
+     <p style="font-size:12px;color:#64748b">${money(price)} × ${qty}</p>
+     <div class="qty" style="margin-top:4px;display:inline-flex;gap:5px;">
+      <button onclick="changeQty(${id},-1)">−</button>
+      <span style="padding:0 6px;font-size:13px;">${qty}</span>
+      <button onclick="changeQty(${id},1)">+</button>
+     </div>
+    </div>
+    <b style="font-size:13px;color:#0f172a">${money(price*qty)}</b>
+   </div>`;
+  });
+  
+  html+=`
+  <div style="margin-top:15px;font-size:13px;color:#475569;">
+   <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span>পণ্যের মূল্য:</span> <b>${money(subtotal)}</b></div>
+   <button class="primary" onclick="checkout()">অর্ডার কনফার্ম করতে এগিয়ে যান</button>
+  </div>
+  `;
+ }
+ showModal(html);
+}
+
+function checkout(){
+ if(!Object.keys(cart).length)return;
+ showModal(`
+ <button class="close" onclick="openCart()">ফিরে যান</button>
+ <h2>📦 ডেলিভারি তথ্য ও এলাকা</h2>
+ <form id="checkoutForm">
+  <input name="name" placeholder="আপনার পুরো নাম" required>
+  <input name="phone" placeholder="মোবাইল নম্বর" type="tel" required>
+  <select id="deliveryArea" name="area" onchange="updateCheckoutTotal()" required>
+   <option value="satkhira">সাতক্ষীরা সদর / ভেতরে (ডেলিভারি চার্জ ৬০ টাকা)</option>
+   <option value="outside">সাতক্ষীরার বাইরে (ডেলিভারি চার্জ ১৫০ টাকা)</option>
+  </select>
+  <textarea name="address" placeholder="সম্পূর্ণ ডেলিভারি ঠিকানা (গ্রাম/রোড/বাসা)" rows="2" required></textarea>
+  <select name="payment">
+   <option>Cash on Delivery</option>
+   <option>bKash</option>
+   <option>Nagad</option>
+  </select>
+  <div id="checkoutSummary" style="margin:12px 0;font-size:14px;background:#f1f5f9;padding:10px;border-radius:6px;"></div>
+  <button class="primary" type="submit">অর্ডার প্লেস করুন</button>
+ </form>
+ `);
+ updateCheckoutTotal();
+ document.getElementById("checkoutForm").addEventListener("submit",placeOrder);
+}
+
+function updateCheckoutTotal(){
+ let subtotal=0;
+ Object.entries(cart).forEach(([id,qty])=>{
+  let p=products.find(x=>x.id==id);
+  if(p) subtotal += (p.price * 0.90) * qty;
+ });
+ 
+ let area=document.getElementById("deliveryArea").value;
+ let deliveryFee=(area==="satkhira")?60:150;
+ let total=subtotal+deliveryFee;
+ 
+ document.getElementById("checkoutSummary").innerHTML=`
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span>পণ্যের মূল্য:</span> <b>${money(subtotal)}</b></div>
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span>ডেলিভারি চার্জ:</span> <b>${money(deliveryFee)}</b></div>
+  <div style="display:flex;justify-content:space-between;font-weight:bold;color:#10b981;border-top:1px solid #cbd5e1;padding-top:4px;"><span>সর্বমোট:</span> <span>${money(total)}</span></div>
+ `;
+}
+
+function placeOrder(e){
+ e.preventDefault();
+ let f=new FormData(e.target);
+ let subtotal=0;
+ let items=Object.entries(cart).map(([id,qty])=>{
+  let p=products.find(x=>x.id==id);
+  let price=p.price*0.90;
+  subtotal+=price*qty;
+  return {name:p.name, quantity:qty, unit:p.unit, price:price};
+ });
+ 
+ let area=f.get("area");
+ let deliveryFee=(area==="satkhira")?60:150;
+ 
+ let order={
+  id:"SFH-"+Math.floor(100000+Math.random()*900000),
+  name:f.get("name"),
+  phone:f.get("phone"),
+  address:f.get("address"),
+  total:subtotal+deliveryFee,
+  status:"Processing",
+  date:new Date().toLocaleDateString()
+ };
+ orders.push(order);
+ localStorage.setItem("simanto_orders",JSON.stringify(orders));
+ cart={};
+ saveCart();
+ showModal(`
+ <div style="text-align:center;padding:15px;">
+  <h2 style="color:#10b981;margin-bottom:8px;">✓ অর্ডার সফল হয়েছে!</h2>
+  <p style="font-size:13px;color:#64748b;">আপনার অর্ডার আইডি:</p>
+  <h3 style="background:#f1f5f9;padding:10px;border-radius:6px;margin:10px 0;letter-spacing:1px;color:#0f172a">${order.id}</h3>
+  <p style="font-size:12px;color:#64748b;margin-bottom:15px;">ভবিষ্যতে অর্ডার ট্র্যাক করতে এই কোডটি সংরক্ষণ করুন।</p>
+  <button class="primary" onclick="closeModal()">ঠিক আছে</button>
+ </div>
+ `);
+}
+
+function showDelivery(nav){
+ if(nav)activateNav(nav);
+ showModal(`
+ <button class="close" onclick="closeModal()">✕</button>
+ <h2>🚚 ডেলিভারি নীতিমালা ও চার্জ</h2>
+ <p style="font-size:13px;color:#475569;line-height:1.6;margin-top:10px;">
+  • দ্রুততম সময়ে আপনার দোরগোড়ায় পণ্য পৌঁছে দেওয়া হয়।<br>
+  • **সাতক্ষীরার ভেতরে:** ৬০ টাকা<br>
+  • **সাতক্ষীরার বাইরে:** ১৫০ টাকা<br>
+  • যেকোনো প্রয়োজনে আমাদের ট্র্যাকিং কোড ব্যবহার করুন।
+ </p>
+ `);
+}
+
+function showTracking(nav){
+ if(nav)activateNav(nav);
+ showModal(`
+ <button class="close" onclick="closeModal()">✕</button>
+ <h2>🔎 অর্ডার ট্র্যাক করুন</h2>
+ <p style="font-size:13px;color:#64748b;margin-bottom:10px;">আপনার অর্ডার আইডি (যেমন: SFH-123456) লিখুন:</p>
+ <input id="trackCode" placeholder="SFH-XXXXXX">
+ <button class="primary" onclick="trackOrder()">খুঁজুন</button>
+ <div id="trackResult" style="margin-top:15px;"></div>
+ `);
+}
+
+function trackOrder(){
+ let code=document.getElementById("trackCode").value.trim();
+ let order=orders.find(x=>x.id===code);
+ let result=document.getElementById("trackResult");
+ if(!order){
+  result.innerHTML="<p style='color:#dc2626;font-size:13px;'>দুঃখিত, এই কোডের কোনো অর্ডার পাওয়া যায়নি।</p>";
+  return;
+ }
+ result.innerHTML=`
+ <div style="background:#f8f9fa;padding:12px;border-radius:6px;font-size:13px;">
+  <p><b>অর্ডার আইডি:</b> ${order.id}</p>
+  <p><b>গ্রাহক:</b> ${order.name}</p>
+  <p><b>মোট মূল্য:</b> ${money(order.total)}</p>
+  <p style="margin-top:5px;color:#10b981"><b>স্ট্যাটাস:</b> ${order.status}</p>
+ </div>
+ `;
+}
+
+function showProfile(nav){
+ if(nav)activateNav(nav);
+ showModal(`
+ <button class="close" onclick="closeModal()">✕</button>
+ <h2>👤 ইউজার প্রোফাইল</h2>
+ <p style="font-size:13px;color:#64748b;margin-bottom:15px;">SIMANTO FOOD HOUSE - Customer Dashboard</p>
+ <button class="primary" onclick="showMyOrders()">আমার অর্ডারসমূহ</button>
+ `);
+}
+
+function showMyOrders(){
+ let html=`<button class="close" onclick="showProfile()">ফিরে যান</button><h2>আমার অর্ডারসমূহ</h2>`;
+ if(!orders.length){
+  html+="<p style='color:#64748b;padding:20px 0;text-align:center;'>কোনো অর্ডার করা হয়নি।</p>";
+ }else{
+  orders.forEach(o=>{
+   html+=`
+   <div style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;">
+    <div style="display:flex;justify-content:space-between"><b>${o.id}</b> <span style="color:#10b981">${o.status}</span></div>
+    <p style="color:#64748b">${o.date} — মোট: ${money(o.total)}</p>
+   </div>`;
+  });
+ }
+ showModal(html);
+}
+
+function activateNav(el){
+ document.querySelectorAll(".navitem").forEach(x=>x.classList.remove("active"));
+ el.classList.add("active");
+}
+
+function goHome(el){
+ activateNav(el);
+ closeModal();
+ selected="সব পণ্য";
+ renderCategories();
+ renderProducts();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function showModal(html){
+ document.getElementById("modal").innerHTML=html;
+ document.getElementById("overlay").style.display="flex";
+}
+
+function closeModal(){
+ document.getElementById("overlay").style.display="none";
+}
+
+document.getElementById("search").addEventListener("input",renderProducts);
+document.getElementById("sort").addEventListener("change",renderProducts);
+
+renderCategories();
+renderProducts();
+updateCartCount();
+</script>
+
+</body>
+</html>
